@@ -90,10 +90,10 @@ PROGRAM Network
   
     call cpu_time(start)
     
-    OPEN(11,File="Average_synaptic_weight.txt",Status='unknown')
-    OPEN(12,File="Coefficient_of_variation.txt",Status='unknown')
-    OPEN(13,File="Synchronization_index.txt",Status='unknown')
-    OPEN(10,File="noise_data.txt", Status='unknown', action='read')
+    OPEN(11,File="results/Average_synaptic_weight.txt",Status='unknown')
+    OPEN(12,File="results/Coefficient_of_variation.txt",Status='unknown')
+    OPEN(13,File="results/Synchronization_index.txt",Status='unknown')
+    OPEN(10,File="input_data/noise_data.txt", Status='unknown', action='read')
     !OPEN(14,File="small_world.txt",Status='unknown')
 
 
@@ -101,7 +101,7 @@ PROGRAM Network
 
     
      ! Network parameters initialization
-      OPEN(UNIT=17,FILE='parameters_sw.txt', STATUS='unknown')
+      OPEN(UNIT=17,FILE='input_data/parameters_sw.txt', STATUS='unknown')
       READ(17,*)
       READ(17,*) nodes, neigh, beta, Nstep
       CLOSE(17)
@@ -260,7 +260,7 @@ PROGRAM Network
               IF (j .GT. nodes) iv = MOD(j,nodes) 
               
               IF(weights(k, iv) .NE. 0)THEN
-      
+
                 dS1(k) = S1(k, c1(k)) - S1(iv, c1(iv)) ! implement nearest spiking time of neighboring neuron iv
                 !IF ( (p  .GT. 250000) .AND. MOD(p, 50000)==0) THEN
                   !print*, "t:", p, "i:", k, "i neigh:", iv
